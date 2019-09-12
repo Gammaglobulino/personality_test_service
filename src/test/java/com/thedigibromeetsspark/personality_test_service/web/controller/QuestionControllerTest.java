@@ -37,7 +37,7 @@ class QuestionControllerTest {
     QuestionRepository questionRepository;
 
     @Test
-    void getBeerById() throws Exception {
+    void getQuestionById() throws Exception {
         given(questionRepository.findById(any())).willReturn(Optional.of(Question.builder().build()));
         mockMvc.perform(get("/api/v1/question/{questionId}",UUID.randomUUID().toString())
                 .accept(MediaType.APPLICATION_JSON))
@@ -45,9 +45,9 @@ class QuestionControllerTest {
 
     }
     @Test
-    void saveNewBeer() throws Exception {
-        QuestionDto beerDto = getValidQuestionDto();
-        String questionDtoJson = objectMapper.writeValueAsString(QuestionDto.class);
+    void saveNewQuestion() throws Exception {
+        QuestionDto questionDto = getValidQuestionDto();
+        String questionDtoJson = objectMapper.writeValueAsString(questionDto);
         //ConstrainedFields fields = new ConstrainedFields(QuestionDto.class);
         mockMvc.perform(post("/api/v1/question/")
                 .contentType(MediaType.APPLICATION_JSON)
