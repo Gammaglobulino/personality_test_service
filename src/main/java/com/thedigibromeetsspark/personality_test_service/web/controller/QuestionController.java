@@ -19,6 +19,7 @@ import java.util.UUID;
 public class QuestionController {
     private final QuestionMapper questionMapper;
     private final QuestionRepository questionRepository;
+
     @GetMapping("/{questionId}")
     public ResponseEntity<QuestionDto> getQuestionById(@PathVariable("questionId") UUID questionId){
         return new ResponseEntity<>(questionMapper.questionToQuestionDto(questionRepository.findById(questionId).get()), HttpStatus.OK);
